@@ -24,7 +24,6 @@ public class App implements ActionListener, WindowStateListener, MouseListener {
     SystemTray tray;
     Image image;
     TrayIcon trayicon;
-    JFrame mini_frame;
     JFrame frame;   
 
 
@@ -62,15 +61,12 @@ public class App implements ActionListener, WindowStateListener, MouseListener {
             button.setBorderPainted(false);
             button.setForeground(new Color(96, 113, 133));
             button.setFocusable(false);
-
             JPanel rightpanel = new JPanel();
             rightpanel.setBackground(new Color(43, 70, 100));
-
             button.setActionCommand(action_command);
             button.addActionListener(this);
             button.setPreferredSize(new Dimension(200, 70)); //////////////////////////////////////////////
             button.setMaximumSize(new Dimension(200, 70));
-
             button_hash.put(action_command, rightpanel);
             button_hash2.put(action_command, button);
 
@@ -193,15 +189,18 @@ public class App implements ActionListener, WindowStateListener, MouseListener {
     }
 
     public static void main(String[] args) throws Exception {
+        
+        TrayWindow tw = new TrayWindow(); 
+        tw.main(args);
+        
         JSplitPane splitpane = new JSplitPane(SwingConstants.VERTICAL);
         App App = new App(splitpane);
         JPanel leftpanel = App.panel_creator(new Color(24, 35, 57), 10);
-        // leftpanel.add(Box.createVerticalGlue());
 
         leftpanel.setLayout(new BoxLayout(leftpanel, BoxLayout.PAGE_AXIS));
-
         JPanel rightpanel = App.panel_creator(new Color(39, 59, 60), 0); // placeholder
-
+        
+        
         splitpane.setBorder(null);
         splitpane.setLeftComponent(leftpanel);
         splitpane.setRightComponent(rightpanel); //
