@@ -45,8 +45,8 @@ public class panel implements ActionListener {
         // Dimension prefSize = new Dimension(0, 200);
         // Dimension maxSize = new Dimension(Short.MAX_VALUE, 100);
         // panel.add(new Box.Filler(minSize, prefSize, maxSize));
-        for (int i = 0; i < button_amount; i++) { // dynamically add button & buttonaction
-            String action_command = "button" + i;
+        for (int i = 0; i < button_amount; i++) { 
+            String action_command = "Panel " + i;
             JButton button = new JButton(action_command);
             button.setBackground(background_color);
             button.setBorderPainted(false);
@@ -76,7 +76,7 @@ public class panel implements ActionListener {
         if (button_name_panel_hash.containsKey(e.getActionCommand()) == true) {
             try {
                 last_button_clicked.setBackground(background_color); // change color to match right frame
-                System.out.println(splitpane.getDividerLocation());  
+                
             } finally {
                 splitpane.setRightComponent(button_name_panel_hash.get(e.getActionCommand()));
                 button_name_button_object_hash.get(e.getActionCommand()).setBackground(second_panel_color);
@@ -85,19 +85,14 @@ public class panel implements ActionListener {
         }
     }
 
-    
 
 
     public static void main(String[] args) throws Exception {
         JSplitPane splitpane = new JSplitPane(SwingConstants.VERTICAL);
         Color bg = new Color(96, 113, 133); 
         Color fg = new Color(24, 35, 57); 
-
         panel App = new panel(splitpane, bg, fg);
-        JPanel leftpanel = App.panel_creator(4, 70);
-        
-
-
+        JPanel leftpanel = App.panel_creator(9, 70);
         leftpanel.setLayout(new BoxLayout(leftpanel, BoxLayout.PAGE_AXIS));
         splitpane.setBorder(null);
         splitpane.setLeftComponent(leftpanel);
